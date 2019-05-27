@@ -1,27 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:gitone/OpenARepositoryButton.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:gitone/open_repository_button.dart';
+import 'package:gitone/repository/actions.dart';
+import 'package:gitone/repository/middleware.dart';
+import 'package:gitone/repository/reducer.dart';
+import 'package:gitone/repository/state.dart';
+import 'package:gitone/repository_page.dart';
+import 'package:gitone/routes.dart';
+import 'package:redux/redux.dart';
+import 'package:redux_logging/redux_logging.dart';
+import 'package:redux_dev_tools/redux_dev_tools.dart';
+import 'package:redux_remote_devtools/redux_remote_devtools.dart';
 
-void main() => runApp(MyApp());
+final navigatorKey = GlobalKey<NavigatorState>();
+final remoteDevtools = RemoteDevToolsMiddleware('localhost:8564');
+
+Future<void> main() async {
+  final store = DevToolsStore<RepositoryState>(repositoryReducer,
+      initialState: RepositoryState(),
+      middleware: [
+        remoteDevtools,
+        openRepository,
+        LoggingMiddleware.printer(),
+        RoutingMiddleware(navigatorKey)
+      ]);
+  remoteDevtools.store = store;
+  await remoteDevtools.connect();
+  runApp(MyApp(store));
+}
+
+Future<void> runMain() async {
+  main();
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+  Store<RepositoryState> store;
+
+  MyApp(this.store);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Git One',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return StoreProvider<RepositoryState>(
+      store: store,
+      child: MaterialApp(
+        title: 'Git One',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.blue,
+        ),
+        navigatorKey: navigatorKey,
+        routes: {
+          Routes.home: (context) {
+            return MyHomePage(title: 'Git One');
+          },
+          Routes.repo: (context) {
+            return RepositoryPage();
+          }
+        },
       ),
-      home: MyHomePage(title: 'Git One'),
     );
   }
 }

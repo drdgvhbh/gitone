@@ -12,6 +12,10 @@ github.com/gen2brain/dlgs v0.0.0-20180629122906-342edb4c68c1/go.mod h1:/eFcjDXaU
 github.com/go-flutter-desktop/go-flutter v0.5.0-alpha/go.mod h1:bHC0mnEgTyp23W1ymE7PLY1l4jTxGkTBxCnB99dcZFs=
 github.com/go-flutter-desktop/go-flutter v0.15.0 h1:QlEcwjgEUgTCxIgIp7AjOB1zAE1XAiAWoQmpVkc7SvA=
 github.com/go-flutter-desktop/go-flutter v0.15.0/go.mod h1:+E+V03a0dHnxYRl5oDLj3CI0eL5rfXwYCW1CxzvFjkk=
+github.com/go-flutter-desktop/go-flutter v0.16.0 h1:LOqDEW+6IGfn8A3CPN79Ar+xIJo3FdxOqdAzRqOqFlA=
+github.com/go-flutter-desktop/go-flutter v0.16.0/go.mod h1:+E+V03a0dHnxYRl5oDLj3CI0eL5rfXwYCW1CxzvFjkk=
+github.com/go-flutter-desktop/go-flutter v0.18.1-0.20190522230935-bb3debe487f6 h1:y9Ba07SeWattkyCrw6tYJmGKFBFk1t3jIKHB5eDeP20=
+github.com/go-flutter-desktop/go-flutter v0.18.1-0.20190522230935-bb3debe487f6/go.mod h1:GZYxHYp7lRnt3imJV1d8EWleMv5q9J4S2ONNEqpPOfo=
 github.com/go-flutter-desktop/plugins v0.0.0-20190511135323-d7c37a51398b h1:Tc/LPboyTkIVLk+U5Xi3t85E8NmoXHWpcvITcy88DNw=
 github.com/go-flutter-desktop/plugins/shared_preferences v0.4.0 h1:Gf5ZDHNguav8qK0bW0vgtwky6TlbutTBwEPc1l07glA=
 github.com/go-flutter-desktop/plugins/shared_preferences v0.4.0/go.mod h1:n2oMJAzrOAn0loUTH9lay2XEXcxsBmo0e+3EvwSCfko=
@@ -19,6 +23,8 @@ github.com/go-gl/glfw v0.0.0-20190217072633-93b30450e032 h1:WUDJN6o1AZlnNR0UZ11z
 github.com/go-gl/glfw v0.0.0-20190217072633-93b30450e032/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
 github.com/go-gl/glfw v0.0.0-20190409004039-e6da0acd62b1 h1:QbL/5oDUmRBzO9/Z7Seo6zf912W/a6Sr4Eu0G/3Jho0=
 github.com/go-gl/glfw v0.0.0-20190409004039-e6da0acd62b1/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
+github.com/go-gl/glfw v0.0.0-20190519095719-e6da0acd62b1 h1:noz9OnjV5PMOZWNOI+y1cS5rnxuJfpY6leIgQEEdBQw=
+github.com/go-gl/glfw v0.0.0-20190519095719-e6da0acd62b1/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db h1:woRePGFeVFfLKN/pOkfl+p/TAqKOfFu+7KPlMVpok/w=
 github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
