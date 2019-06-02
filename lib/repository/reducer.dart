@@ -19,12 +19,5 @@ RepositoryState _setUrl(
   RepositoryState state,
   OpenRepositoryAction action,
 ) {
-  debugPrint("?????????????????????");
   return state.copyWith(url: action.url);
-}
-
-RepositoryState counterReducer(RepositoryState state, dynamic action) {
-  debugPrint(action.toString());
-
-  return RepositoryState(url: "Why is tis doing ntohing", commits: []);
 }

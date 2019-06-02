@@ -28,7 +28,6 @@ class _OpenARepositoryButtonState extends State<OpenARepositoryButton> {
           setState(() {
             _isWaitingForDialogToBeChosen = true;
           });
-          debugPrint("call me back");
           final String path = await platform.invokeMethod(
               "openDirectory", <String, dynamic>{"title": "Open a Repository"});
           store.dispatch(OpenRepositoryAction(path));

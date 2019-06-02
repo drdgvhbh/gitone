@@ -11,11 +11,13 @@ import 'package:redux/redux.dart';
 import 'package:redux_logging/redux_logging.dart';
 import 'package:redux_dev_tools/redux_dev_tools.dart';
 import 'package:redux_remote_devtools/redux_remote_devtools.dart';
+import 'package:flutter/rendering.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 final remoteDevtools = RemoteDevToolsMiddleware('localhost:8564');
 
 Future<void> main() async {
+  // debugPaintSizeEnabled = true;
   final store = DevToolsStore<RepositoryState>(repositoryReducer,
       initialState: RepositoryState(),
       middleware: [
@@ -47,17 +49,23 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Git One',
         theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.blue,
-        ),
+            // This is the theme of your application.
+            //
+            // Try running your application with "flutter run". You'll see the
+            // application has a blue toolbar. Then, without quitting the app, try
+            // changing the primarySwatch below to Colors.green and then invoke
+            // "hot reload" (press "r" in the console where you ran "flutter run",
+            // or simply save your changes to "hot reload" in a Flutter IDE).
+            // Notice that the counter didn't reset back to zero; the application
+            // is not restarted.
+            primarySwatch: Colors.blue,
+            colorScheme: ColorScheme.dark(),
+            textTheme: TextTheme(
+                body1: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 13.5),
+                body2: TextStyle(color: Colors.white))),
         navigatorKey: navigatorKey,
         routes: {
           Routes.home: (context) {
@@ -113,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      backgroundColor: Colors.blueGrey[800],
+      backgroundColor: Color.fromARGB(255, 27, 42, 51),
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.

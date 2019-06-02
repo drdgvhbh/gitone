@@ -184,7 +184,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: f516938fe9587e08bb126e50a0513e12ede146b4
+      resolved-ref: "89cc203842737562b607a2f59e7a8d6094555773"
       url: "https://github.com/drdgvhbh/gitserver-client.git"
     source: git
     version: "1.0.0"

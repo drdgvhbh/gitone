@@ -15,7 +15,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.2.0 <3.0.0"
-
+ 
 dependencies:
   meta: ">=1.1.0 <2.0.0"
   redux_logging: ^0.3.0
@@ -28,7 +28,7 @@ dependencies:
   gitserver:
     git: https://github.com/drdgvhbh/gitserver-client.git
   rxdart: ^0.22.0
-  flutter:
+  flutter: 
     sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
