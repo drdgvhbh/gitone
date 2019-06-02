@@ -25,3 +25,12 @@ OpenRepositorySuccessAction _$OpenRepositorySuccessActionFromJson(
 Map<String, dynamic> _$OpenRepositorySuccessActionToJson(
         OpenRepositorySuccessAction instance) =>
     <String, dynamic>{'commits': instance.commits};
+
+SetSelectedCommitHashAction _$SetSelectedCommitHashActionFromJson(
+    Map<String, dynamic> json) {
+  return SetSelectedCommitHashAction(json['commitHash'] as String);
+}
+
+Map<String, dynamic> _$SetSelectedCommitHashActionToJson(
+        SetSelectedCommitHashAction instance) =>
+    <String, dynamic>{'commitHash': instance.commitHash};

@@ -63,11 +63,16 @@ Map<String, dynamic> _$CommitToJson(Commit instance) => <String, dynamic>{
 RepositoryState _$RepositoryStateFromJson(Map<String, dynamic> json) {
   return RepositoryState(
       url: json['url'] as String,
-      commits: (json['commits'] as List)
-          ?.map((e) =>
-              e == null ? null : Commit.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+      commits: (json['commits'] as Map<String, dynamic>)?.map(
+        (k, e) => MapEntry(
+            k, e == null ? null : Commit.fromJson(e as Map<String, dynamic>)),
+      ),
+      selectedHash: json['selectedHash'] as String);
 }
 
 Map<String, dynamic> _$RepositoryStateToJson(RepositoryState instance) =>
-    <String, dynamic>{'url': instance.url, 'commits': instance.commits};
+    <String, dynamic>{
+      'url': instance.url,
+      'commits': instance.commits,
+      'selectedHash': instance.selectedHash
+    };

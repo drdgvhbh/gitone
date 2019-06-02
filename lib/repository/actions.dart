@@ -32,3 +32,15 @@ class OpenRepositoryFailedAction {
 
   OpenRepositoryFailedAction(this.error);
 }
+
+@JsonSerializable()
+class SetSelectedCommitHashAction {
+  final String commitHash;
+
+  SetSelectedCommitHashAction(this.commitHash);
+
+  factory SetSelectedCommitHashAction.fromJson(Map<String, dynamic> json) =>
+      _$SetSelectedCommitHashActionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SetSelectedCommitHashActionToJson(this);
+}

@@ -49,13 +49,18 @@ class Commit {
 @JsonSerializable()
 class RepositoryState {
   final String url;
-  final List<Commit> commits;
+  final Map<String, Commit> commits;
+  final String selectedHash;
 
-  RepositoryState({this.url = "", this.commits = const []});
+  RepositoryState(
+      {this.url = "", this.commits = const {}, this.selectedHash = ""});
 
-  RepositoryState copyWith({String url, List<Commit> commits}) {
+  RepositoryState copyWith(
+      {String url, Map<String, Commit> commits, String selectedHash}) {
     return RepositoryState(
-        url: url ?? this.url, commits: commits ?? this.commits);
+        url: url ?? this.url,
+        commits: commits ?? this.commits,
+        selectedHash: selectedHash ?? this.selectedHash);
   }
 
   factory RepositoryState.fromJson(Map<String, dynamic> json) =>
