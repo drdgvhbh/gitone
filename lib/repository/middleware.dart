@@ -5,13 +5,21 @@ import 'package:gitserver/api.dart' as Git;
 import 'package:redux/redux.dart';
 import 'package:gitone/repository/reference.mapper.dart';
 
-void openRepository(Store<RepositoryState> store, action, NextDispatcher next) {
-  if (action is OpenRepositoryAction) {
-    final apiInstance =
-        new Git.DefaultApi(Git.ApiClient(basePath: "http://localhost:8000/v1"));
-    apiInstance.apiClient.getAuthentication<Git.ApiKeyAuth>('api_key').apiKey =
-        "e8b8dc29-d1d9-495d-b509-4dde3701018b";
+List<Middleware<RepositoryState>> createRepositoryMiddleware() {
+  final apiInstance =
+      new Git.DefaultApi(Git.ApiClient(basePath: "http://localhost:8000/v1"));
+  apiInstance.apiClient.getAuthentication<Git.ApiKeyAuth>('api_key').apiKey =
+      "e8b8dc29-d1d9-495d-b509-4dde3701018b";
 
+  return [
+    TypedMiddleware<RepositoryState, OpenRepositoryAction>(
+        _createOpenRepository(apiInstance))
+  ];
+}
+
+Middleware<RepositoryState> _createOpenRepository(Git.DefaultApi apiInstance) {
+  return (Store<RepositoryState> store, _action, NextDispatcher next) {
+    final action = _action as OpenRepositoryAction;
     final path = action.url;
 
     apiInstance
@@ -29,7 +37,7 @@ void openRepository(Store<RepositoryState> store, action, NextDispatcher next) {
       debugPrint(err.toString());
       return store.dispatch(OpenRepositoryFailedAction(err));
     });
-  }
 
-  next(action);
+    next(action);
+  };
 }

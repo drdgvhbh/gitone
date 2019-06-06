@@ -22,7 +22,7 @@ Future<void> main() async {
       initialState: RepositoryState(),
       middleware: [
         remoteDevtools,
-        openRepository,
+        ...createRepositoryMiddleware(),
         LoggingMiddleware.printer(),
         RoutingMiddleware(navigatorKey)
       ]);
