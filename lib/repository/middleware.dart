@@ -33,9 +33,13 @@ Middleware<RepositoryState> _createOpenRepository(Git.DefaultApi apiInstance) {
             summary: commit.summary,
             references: commit.references.map(mapReference).toList())))
         .first
-        .then((commits) =>
-            store.dispatch(OpenRepositorySuccessAction(commits.toList())))
-        .catchError((err) {
+        .then((commits) {
+      final commitList = commits.toList();
+      store.dispatch(OpenRepositorySuccessAction(commitList));
+      if (commitList.length > 0) {
+        store.dispatch(SetSelectedCommitAction(commitList[0].hash));
+      }
+    }).catchError((err) {
       debugPrint(err.toString());
       return store.dispatch(OpenRepositoryFailedAction(err));
     });
