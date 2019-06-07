@@ -59,7 +59,9 @@ class MyApp extends StatelessWidget {
             // Notice that the counter didn't reset back to zero; the application
             // is not restarted.
             primarySwatch: Colors.blue,
+            primaryColorDark: Color.fromARGB(255, 22, 36, 44),
             backgroundColor: Color.fromARGB(255, 27, 42, 51),
+            highlightColor: Color.fromARGB(225, 22, 36, 44),
             colorScheme: ColorScheme.dark(),
             textTheme: TextTheme(
                 body1: TextStyle(

@@ -26,8 +26,8 @@ class CommitList extends StatelessWidget {
         converter: (store) => store,
         builder: (context, store) {
           final state = store.state;
-          final commitBackground = Color.fromARGB(255, 22, 36, 44);
-          final selectedCommitBackground = Color.fromARGB(225, 22, 36, 44);
+          final commitBackground = Theme.of(context).primaryColorDark;
+          final selectedCommitBackground = Theme.of(context).highlightColor;
           final commits = state.commits.values.toList();
           final selectedHash = state.selectedHash;
           return Flexible(
