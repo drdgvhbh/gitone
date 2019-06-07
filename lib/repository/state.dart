@@ -51,16 +51,24 @@ class RepositoryState {
   final String url;
   final Map<String, Commit> commits;
   final String selectedHash;
+  final List<Change> changes;
 
   RepositoryState(
-      {this.url = "", this.commits = const {}, this.selectedHash = ""});
+      {this.url = "",
+      this.commits = const {},
+      this.selectedHash = "",
+      this.changes = const []});
 
   RepositoryState copyWith(
-      {String url, Map<String, Commit> commits, String selectedHash}) {
+      {String url,
+      Map<String, Commit> commits,
+      String selectedHash,
+      List<Change> changes}) {
     return RepositoryState(
         url: url ?? this.url,
         commits: commits ?? this.commits,
-        selectedHash: selectedHash ?? this.selectedHash);
+        selectedHash: selectedHash ?? this.selectedHash,
+        changes: changes ?? this.changes);
   }
 
   factory RepositoryState.fromJson(Map<String, dynamic> json) =>
@@ -71,5 +79,26 @@ class RepositoryState {
   @override
   String toString() {
     return 'RepositoryState{url: $url, commits: $commits}';
+  }
+}
+
+enum ChangeType { INSERT, MODIFY, DELETE }
+
+@immutable
+@JsonSerializable()
+class Change {
+  final ChangeType type;
+
+  final String filePath;
+
+  Change({this.type, this.filePath});
+
+  factory Change.fromJson(Map<String, dynamic> json) => _$ChangeFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ChangeToJson(this);
+
+  @override
+  String toString() {
+    return 'Change{type: $type, filePath: $filePath}';
   }
 }

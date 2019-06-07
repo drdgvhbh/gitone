@@ -67,12 +67,34 @@ RepositoryState _$RepositoryStateFromJson(Map<String, dynamic> json) {
         (k, e) => MapEntry(
             k, e == null ? null : Commit.fromJson(e as Map<String, dynamic>)),
       ),
-      selectedHash: json['selectedHash'] as String);
+      selectedHash: json['selectedHash'] as String,
+      changes: (json['changes'] as List)
+          ?.map((e) =>
+              e == null ? null : Change.fromJson(e as Map<String, dynamic>))
+          ?.toList());
 }
 
 Map<String, dynamic> _$RepositoryStateToJson(RepositoryState instance) =>
     <String, dynamic>{
       'url': instance.url,
       'commits': instance.commits,
-      'selectedHash': instance.selectedHash
+      'selectedHash': instance.selectedHash,
+      'changes': instance.changes
     };
+
+Change _$ChangeFromJson(Map<String, dynamic> json) {
+  return Change(
+      type: _$enumDecodeNullable(_$ChangeTypeEnumMap, json['type']),
+      filePath: json['filePath'] as String);
+}
+
+Map<String, dynamic> _$ChangeToJson(Change instance) => <String, dynamic>{
+      'type': _$ChangeTypeEnumMap[instance.type],
+      'filePath': instance.filePath
+    };
+
+const _$ChangeTypeEnumMap = <ChangeType, dynamic>{
+  ChangeType.INSERT: 'INSERT',
+  ChangeType.MODIFY: 'MODIFY',
+  ChangeType.DELETE: 'DELETE'
+};

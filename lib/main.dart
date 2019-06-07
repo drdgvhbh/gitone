@@ -23,7 +23,7 @@ Future<void> main() async {
       middleware: [
         remoteDevtools,
         ...createRepositoryMiddleware(),
-        LoggingMiddleware.printer(),
+        // LoggingMiddleware.printer(),
         RoutingMiddleware(navigatorKey)
       ]);
   remoteDevtools.store = store;

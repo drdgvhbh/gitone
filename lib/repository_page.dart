@@ -35,7 +35,7 @@ class RepositoryPage extends StatelessWidget {
               body: Row(
                 children: <Widget>[
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: Column(
                       children: <Widget>[
                         Flexible(
@@ -53,7 +53,7 @@ class RepositoryPage extends StatelessWidget {
                                 return GestureDetector(
                                   onTap: () {
                                     store.dispatch(
-                                        SetSelectedCommitHashAction(hash));
+                                        SetSelectedCommitAction(hash));
                                   },
                                   child: Card(
                                     margin: new EdgeInsets.all(0),
@@ -127,7 +127,7 @@ class RepositoryPage extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    flex: 3,
+                    flex: 7,
                     child: Text("yoloswag"),
                   )
                 ],

@@ -26,11 +26,31 @@ Map<String, dynamic> _$OpenRepositorySuccessActionToJson(
         OpenRepositorySuccessAction instance) =>
     <String, dynamic>{'commits': instance.commits};
 
-SetSelectedCommitHashAction _$SetSelectedCommitHashActionFromJson(
+SetSelectedCommitAction _$SetSelectedCommitActionFromJson(
     Map<String, dynamic> json) {
-  return SetSelectedCommitHashAction(json['commitHash'] as String);
+  return SetSelectedCommitAction(json['commitHash'] as String);
 }
 
-Map<String, dynamic> _$SetSelectedCommitHashActionToJson(
-        SetSelectedCommitHashAction instance) =>
+Map<String, dynamic> _$SetSelectedCommitActionToJson(
+        SetSelectedCommitAction instance) =>
+    <String, dynamic>{'commitHash': instance.commitHash};
+
+SetCommitDiffAction _$SetCommitDiffActionFromJson(Map<String, dynamic> json) {
+  return SetCommitDiffAction((json['changes'] as List)
+      ?.map(
+          (e) => e == null ? null : Change.fromJson(e as Map<String, dynamic>))
+      ?.toList());
+}
+
+Map<String, dynamic> _$SetCommitDiffActionToJson(
+        SetCommitDiffAction instance) =>
+    <String, dynamic>{'changes': instance.changes};
+
+UnableToFetchCommitDiffAction _$UnableToFetchCommitDiffActionFromJson(
+    Map<String, dynamic> json) {
+  return UnableToFetchCommitDiffAction(json['commitHash'] as String);
+}
+
+Map<String, dynamic> _$UnableToFetchCommitDiffActionToJson(
+        UnableToFetchCommitDiffAction instance) =>
     <String, dynamic>{'commitHash': instance.commitHash};

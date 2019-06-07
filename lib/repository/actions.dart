@@ -34,13 +34,37 @@ class OpenRepositoryFailedAction {
 }
 
 @JsonSerializable()
-class SetSelectedCommitHashAction {
+class SetSelectedCommitAction {
   final String commitHash;
 
-  SetSelectedCommitHashAction(this.commitHash);
+  SetSelectedCommitAction(this.commitHash);
 
-  factory SetSelectedCommitHashAction.fromJson(Map<String, dynamic> json) =>
-      _$SetSelectedCommitHashActionFromJson(json);
+  factory SetSelectedCommitAction.fromJson(Map<String, dynamic> json) =>
+      _$SetSelectedCommitActionFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SetSelectedCommitHashActionToJson(this);
+  Map<String, dynamic> toJson() => _$SetSelectedCommitActionToJson(this);
+}
+
+@JsonSerializable()
+class SetCommitDiffAction {
+  final List<Change> changes;
+
+  SetCommitDiffAction(this.changes);
+
+  factory SetCommitDiffAction.fromJson(Map<String, dynamic> json) =>
+      _$SetCommitDiffActionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SetCommitDiffActionToJson(this);
+}
+
+@JsonSerializable()
+class UnableToFetchCommitDiffAction {
+  final String commitHash;
+
+  UnableToFetchCommitDiffAction(this.commitHash);
+
+  factory UnableToFetchCommitDiffAction.fromJson(Map<String, dynamic> json) =>
+      _$UnableToFetchCommitDiffActionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UnableToFetchCommitDiffActionToJson(this);
 }

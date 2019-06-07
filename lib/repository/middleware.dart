@@ -13,7 +13,9 @@ List<Middleware<RepositoryState>> createRepositoryMiddleware() {
 
   return [
     TypedMiddleware<RepositoryState, OpenRepositoryAction>(
-        _createOpenRepository(apiInstance))
+        _createOpenRepository(apiInstance)),
+    TypedMiddleware<RepositoryState, SetSelectedCommitAction>(
+        _createShowCurrentCommitDiff(apiInstance))
   ];
 }
 
@@ -36,6 +38,43 @@ Middleware<RepositoryState> _createOpenRepository(Git.DefaultApi apiInstance) {
         .catchError((err) {
       debugPrint(err.toString());
       return store.dispatch(OpenRepositoryFailedAction(err));
+    });
+
+    next(action);
+  };
+}
+
+Middleware<RepositoryState> _createShowCurrentCommitDiff(
+    Git.DefaultApi apiInstance) {
+  return (Store<RepositoryState> store, _action, NextDispatcher next) {
+    final action = _action as SetSelectedCommitAction;
+    final path = store.state.url;
+
+    apiInstance
+        .getCommitChanges(path.replaceAll("/", "|"), action.commitHash)
+        .asStream()
+        .map(((response) => response.data))
+        .map((changes) => changes.map((change) {
+              final type = () {
+                switch (change.type) {
+                  case 'MODIFY':
+                    return ChangeType.MODIFY;
+                  case 'INSERT':
+                    return ChangeType.INSERT;
+                  case 'DELETE':
+                    return ChangeType.DELETE;
+                  default:
+                    break;
+                }
+              }();
+
+              return Change(filePath: change.path, type: type);
+            }).toList())
+        .first
+        .then((changes) => store.dispatch(SetCommitDiffAction(changes)))
+        .catchError((err) {
+      debugPrint(err.toString());
+      store.dispatch(UnableToFetchCommitDiffAction(action.commitHash));
     });
 
     next(action);

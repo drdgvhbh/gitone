@@ -5,7 +5,8 @@ import 'package:redux/redux.dart';
 Reducer<RepositoryState> repositoryReducer = combineReducers<RepositoryState>([
   TypedReducer<RepositoryState, OpenRepositorySuccessAction>(_setCommits),
   TypedReducer<RepositoryState, OpenRepositoryAction>(_setUrl),
-  TypedReducer<RepositoryState, SetSelectedCommitHashAction>(_setSelectedHash),
+  TypedReducer<RepositoryState, SetSelectedCommitAction>(_setSelectedCommit),
+  TypedReducer<RepositoryState, SetCommitDiffAction>(_setDiff),
 ]);
 
 RepositoryState _setCommits(
@@ -25,9 +26,16 @@ RepositoryState _setUrl(
   return state.copyWith(url: action.url);
 }
 
-RepositoryState _setSelectedHash(
+RepositoryState _setSelectedCommit(
   RepositoryState state,
-  SetSelectedCommitHashAction action,
+  SetSelectedCommitAction action,
 ) {
   return state.copyWith(selectedHash: action.commitHash);
+}
+
+RepositoryState _setDiff(
+  RepositoryState state,
+  SetCommitDiffAction action,
+) {
+  return state.copyWith(changes: action.changes);
 }
