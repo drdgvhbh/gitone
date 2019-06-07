@@ -13,7 +13,7 @@ class RepositoryPage extends StatelessWidget {
           final state = store.state;
           final changes = state.changes;
           return Scaffold(
-              backgroundColor: Color.fromARGB(255, 27, 42, 51),
+              backgroundColor: Theme.of(context).backgroundColor,
               body: Row(
                 children: <Widget>[
                   Expanded(
