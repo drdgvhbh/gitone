@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -96,6 +97,19 @@ class Change {
   factory Change.fromJson(Map<String, dynamic> json) => _$ChangeFromJson(json);
 
   Map<String, dynamic> toJson() => _$ChangeToJson(this);
+
+  String letterRepr() {
+    switch (this.type) {
+      case ChangeType.INSERT:
+        return "A";
+      case ChangeType.MODIFY:
+        return "M";
+      case ChangeType.DELETE:
+        return "D";
+      default:
+        return "";
+    }
+  }
 
   @override
   String toString() {

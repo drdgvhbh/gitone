@@ -65,7 +65,9 @@ class MyApp extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.w300,
                     fontSize: 13.5),
-                body2: TextStyle(color: Colors.white))),
+                body2: TextStyle(color: Colors.white),
+                button: TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.w300))),
         navigatorKey: navigatorKey,
         routes: {
           Routes.home: (context) {
