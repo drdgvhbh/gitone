@@ -34,7 +34,6 @@ class CommitList extends StatelessWidget {
             child: Scrollbar(
               child: ListView.builder(
                 shrinkWrap: true,
-                padding: const EdgeInsets.all(8.0),
                 itemCount: commits.length,
                 itemBuilder: (context, position) {
                   final commit = commits[position];
